@@ -26,18 +26,27 @@ public class LoginController {
 		return mv;
 	}
 	
+	@GetMapping("/dashboard")
+	public ModelAndView dashboard() {
+		ModelAndView mv = new ModelAndView("Dashboard");
+		return mv;
+	}
+	
 	@PostMapping("/login")
-	public String logar(@Valid Usuario usuario, BindingResult  result, RedirectAttributes attributes) {
+	public ModelAndView logar(@Valid Usuario usuario, BindingResult  result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
-			return "Login";
+			ModelAndView mv = new ModelAndView("Login");
+			return mv;
 		}
 		if (!service.logar(usuario)) {
 			attributes.addFlashAttribute("mensagem", "Usuário ou senha inválidos.");
-			return "redirect:/login";
+			ModelAndView mv = new ModelAndView("Login");
+			return mv;
 		}
 
 		attributes.addFlashAttribute("mensagem", "Login realizado com sucesso.");
-		return "redirect:/cliente";
+		return new ModelAndView("redirect:/dashboard");
+		
 	}
 
 }
