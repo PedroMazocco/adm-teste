@@ -1,0 +1,5 @@
+CREATE TABLE produto(
+	codigo BIGINT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50),
+	valor FLOAT,
+);

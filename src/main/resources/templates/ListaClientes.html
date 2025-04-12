@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Clientes Cadastrados</h1>
+
+        <a class="btn btn-primary mb-3" href="/cliente/novo">
+            <i class="bi bi-plus-circle"></i> Cadastrar Novo Cliente
+        </a>
+
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.codigo}">1</td>
+                    <td th:text="${cliente.nome}">Fulano</td>
+                    <td th:text="${cliente.idade}">30</td>
+                    <td>
+                        <a th:href="@{/cliente/{codigo}(codigo=${cliente.codigo})}" class="btn btn-sm btn-warning me-2">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <form th:action="@{/cliente/{codigo}/excluir(codigo=${cliente.codigo})}" method="post" style="display:inline-block;" onsubmit="return confirm('Deseja realmente excluir este cliente?');">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i> Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

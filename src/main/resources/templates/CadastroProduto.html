@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${produto.nova} ? 'Cadastro de Produto' : 'Edição de Produto'">Cadastro de Produto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0" th:if="${produto.nova}">Cadastro de Produto</h3>
+                <h3 class="mb-0" th:unless="${produto.nova}" th:text="|Edição do ${produto.nome}|">Edição de Produto</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" th:object="${produto}"
+                      th:action="${produto.nova} ? @{/produto/nova} : @{/produto/{codigo}(codigo=${produto.codigo})}">
+                    
+                    <input type="hidden" th:field="*{codigo}" />
+                    
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Digite o nome completo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="valor" class="form-label">Valor</label>
+                        <input type="number" id="valor" th:field="*{valor}" class="form-control" placeholder="Digite a idade">
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Salvar
+                        </button>
+                        <a href="/produto" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
+</body>
+</html>
