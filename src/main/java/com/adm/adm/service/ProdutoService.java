@@ -14,8 +14,6 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository repository;
 	
-	
-	
 	public Object listarTodos() {
 		return repository.findAll();
 	}

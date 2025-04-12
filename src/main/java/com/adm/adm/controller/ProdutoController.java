@@ -26,7 +26,6 @@ public class ProdutoController {
 	private ModelAndView novo(Produto produto) {
 		ModelAndView mv = new ModelAndView("CadastroProduto");
 		mv.addObject("produto", produto);
-		service.salvar(produto);
 		return mv;
 	}
 	
