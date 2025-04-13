@@ -72,6 +72,22 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+        
+        <!-- JasperReports -->
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>6.20.5</version>
+</dependency>
+
+<!-- (Opcional) Se quiser exportar para XLS, DOCX etc -->
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports-fonts</artifactId>
+    <version>6.20.5</version>
+</dependency>
+
+        
     </dependencies>
 
     <build>

@@ -1,5 +1,7 @@
 package com.adm.adm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class ClientesService {
 		repository.save(cliente);
 	}
 
-	public Object listarTodos() {
+	public List<Cliente> listarTodos() {
 		return repository.findAll();
 	}
 

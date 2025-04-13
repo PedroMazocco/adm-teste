@@ -1,5 +1,7 @@
 package com.adm.adm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository repository;
 	
-	public Object listarTodos() {
+	public List<Produto> listarTodos() {
 		return repository.findAll();
 	}
 
