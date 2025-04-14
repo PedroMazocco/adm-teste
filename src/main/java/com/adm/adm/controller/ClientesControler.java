@@ -28,7 +28,7 @@ public class ClientesControler {
         mv.addObject("cliente", cliente);
         return mv;
     }
-
+ 
     @PostMapping("/nova")
     public ModelAndView cadastrar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
