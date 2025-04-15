@@ -1,5 +1,7 @@
 package com.adm.adm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,15 @@ public class UsuarioService {
         return repository.existsByEmailAndSenha(login.getEmail(), login.getSenha());
 		
 	}
+
+	public void cadastrar(@Valid Usuario usuario) {
+		repository.save(usuario);
+	}
+
+	public List<Usuario>  listaUsuarios() {
+		return repository.findAll();
+		
+	}
+
 
 }
