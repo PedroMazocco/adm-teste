@@ -3,6 +3,7 @@ package com.adm.adm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.adm.adm.model.Usuario;
@@ -15,14 +16,15 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-	public Boolean logar(@Valid Usuario login) {
-        return repository.existsByEmailAndSenha(login.getEmail(), login.getSenha());
-		
-	}
 
 	public void cadastrar(@Valid Usuario usuario) {
-		repository.save(usuario);
+		String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(senhaCriptografada);
+        repository.save(usuario);
 	}
 
 	public List<Usuario>  listaUsuarios() {

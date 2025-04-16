@@ -11,24 +11,27 @@
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <h3 class="text-center mb-4">Acesso ao Sistema</h3>
 
-        <form th:action="@{/login}" method="post" th:object="${usuario}">
-            <input type="hidden" th:field="*{codigo}" />
+       <form th:action="@{/login}" method="post">
+    <div class="mb-3">
+        <label for="username" class="form-label">Usuário</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu e-mail" required>
+    </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="email" th:field="*{email}" placeholder="Digite seu e-mail" required>
-            </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+    </div>
+     <div th:if="${param.error}" class="alert alert-danger text-center">
+    Usuário ou senha inválidos.
+</div>
 
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Digite sua senha" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        </form>
+    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+</form>
 
         <div th:if="${mensagem}" class="alert alert-danger mt-3" th:text="${mensagem}"></div>
     </div>
+   
+
 </div>
 
 </body>
