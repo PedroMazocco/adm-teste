@@ -47,7 +47,7 @@ public class ClientesControler {
     }
 
     @PostMapping("/{codigo}")
-    public ModelAndView atualizar(@PathVariable Long codigo, @Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
+    public ModelAndView atualizar(@PathVariable Long codigo, @Valid Cliente cliente, BindingResult result) {
         if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("CadastroCliente");
             mv.addObject("cliente", cliente);
@@ -56,14 +56,12 @@ public class ClientesControler {
 
         cliente.setCodigo(codigo);
         service.salvar(cliente);
-        attributes.addFlashAttribute("mensagem", "Cliente atualizado com sucesso.");
         return new ModelAndView("redirect:/cliente");
     }
 
     @PostMapping("/{codigo}/excluir")
-    public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+    public String excluir(@PathVariable Long codigo) {
         service.deleteById(codigo);
-        attributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso.");
         return "redirect:/cliente";
     }
 
