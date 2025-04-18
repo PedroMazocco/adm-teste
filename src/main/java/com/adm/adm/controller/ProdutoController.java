@@ -31,6 +31,9 @@ public class ProdutoController {
 	
 	@PostMapping("/nova")
 	private ModelAndView cadastrar(@Valid Produto produto, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			return novo(produto);
+		}
 		service.salvar(produto);
 		return new ModelAndView("redirect:/produto");
 	}

@@ -14,14 +14,14 @@
 
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" th:field="*{email}" class="form-control" id="email" required>
-            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro</div>
+            <input type="email" th:field="*{email}" class="form-control" id="email" required th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+             <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
 
         <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
-            <input type="password" th:field="*{senha}" class="form-control" id="senha" required>
-            <div class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Erro</div>
+            <input type="password" th:field="*{senha}" class="form-control" id="senha" required th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'">
+            <div class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
         </div>
 
         <div class="text-end">

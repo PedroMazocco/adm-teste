@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="usuario")
@@ -21,8 +22,10 @@ public class Usuario implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotBlank(message="O campo email é obrigatório!")
 	private String email;
 	
+	@NotBlank(message="O campo senha é obrigatório!")
 	private String senha;
 
 	public Long getCodigo() {

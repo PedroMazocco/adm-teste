@@ -30,12 +30,12 @@ public class UsuarioController {
 	
 	
 	@PostMapping
-	public ModelAndView cadastrar(@Valid Usuario usuario, RedirectAttributes attributes, BindingResult result) {
+	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return novo(usuario);
 		}
 		service.cadastrar(usuario);
-		attributes.addFlashAttribute("mensage", "Usúario salvo com sucesso!");
+	    attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso!");
 		return new ModelAndView("redirect:/usuario");
 	}
 	

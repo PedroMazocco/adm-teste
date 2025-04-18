@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="produto")
@@ -14,8 +16,10 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotBlank(message="O campo nome é obrigatório!")
 	private String nome;
 	
+	@NotNull(message="O campo valor é obrigatório!")
 	private Float valor;
 
 	public Long getCodigo() {
