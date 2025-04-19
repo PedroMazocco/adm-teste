@@ -21,7 +21,6 @@ public class AuthorizationService implements UserDetailsService{
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
-        System.out.println("Senha no banco: " + usuario.getSenha());
         return usuario;
     }
 	
