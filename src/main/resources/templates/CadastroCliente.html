@@ -18,10 +18,31 @@
                     
                     <input type="hidden" th:field="*{codigo}" />
                     
+                    <div class="row">
+				<div class="form-group  col-sm-4  bw-required" adm:classforerror="tipoPessoa">
+					<label class="control-label">Tipo pessoa</label> 
+					<div>
+						<th:block th:each="tipoPessoa : ${tiposPessoa}">
+							<div class="radio  radio-inline">
+								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
+									th:field="*{tipoPessoa}" th:value="${tipoPessoa}" 
+									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"/> 
+								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}">Física</label>
+							</div>
+						</th:block>
+					</div>
+				</div>
+				
+				<div class="form-group  col-sm-8  bw-required" adm:classforerror="cpfOuCnpj">
+					<label for="cpfOuCnpj" class="control-label">CPF/CNPJ</label>
+					<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled/>
+				</div>
+			</div>
+                    
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" id="nome" th:field="*{nome}" class="form-control"  th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
-                        <div th:if="${#fields.hasErrors('nome')}" class="text-danger mt-1" th:errors="*{nome}"></div>
+                        <input type="text" id="nome" th:field="*{nome}" class="form-control"  th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" placeholder="Digite o nome">
+                        <div th:if="${#fields.hasErrors('nome')}" class="text-danger mt-1" th:errors="*{nome}" ></div>
                     </div>
 
                     <div class="mb-3">
@@ -40,6 +61,10 @@
         </div>
     </div>
 
+	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script th:src="@{/javascripts/mascara-cpf-cnpj.js}"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
 </body>
 </html>

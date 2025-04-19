@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.adm.adm.model.Cliente;
+import com.adm.adm.model.TipoPessoa;
 import com.adm.adm.service.ClientesService;
 
 import jakarta.validation.Valid;
@@ -22,22 +23,29 @@ public class ClientesControler {
     @Autowired
     private ClientesService service;
 
-    @GetMapping("/novo")
+   @GetMapping("/novo")
     public ModelAndView novo(Cliente cliente) {
         ModelAndView mv = new ModelAndView("CadastroCliente");
         mv.addObject("cliente", cliente);
+        mv.addObject("tiposPessoa", TipoPessoa.values());
         return mv;
     }
+    
  
     @PostMapping("/nova")
     public ModelAndView cadastrar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            return novo(cliente);
+            ModelAndView mv = new ModelAndView("CadastroCliente");
+            mv.addObject("cliente", cliente);
+            mv.addObject("tiposPessoa", TipoPessoa.values()); 
+            return mv;
         }
+
         service.salvar(cliente);
         attributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso.");
         return new ModelAndView("redirect:/cliente");
     }
+
 
     @GetMapping
     public ModelAndView listarClientes() {
@@ -51,6 +59,7 @@ public class ClientesControler {
         if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("CadastroCliente");
             mv.addObject("cliente", cliente);
+            mv.addObject("tiposPessoa", TipoPessoa.values()); 
             return mv;
         }
 
@@ -58,6 +67,7 @@ public class ClientesControler {
         service.salvar(cliente);
         return new ModelAndView("redirect:/cliente");
     }
+
 
     @PostMapping("/{codigo}/excluir")
     public String excluir(@PathVariable Long codigo) {
@@ -70,6 +80,7 @@ public class ClientesControler {
         Cliente cliente = service.buscarPorId(codigo);
         ModelAndView mv = new ModelAndView("CadastroCliente");
         mv.addObject("cliente", cliente);
+        mv.addObject("tiposPessoa", TipoPessoa.values());
         return mv;
     }
 }

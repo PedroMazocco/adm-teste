@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adm.adm.model.Cliente;
+import com.adm.adm.model.TipoPessoa;
 import com.adm.adm.repository.ClientesRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +19,10 @@ public class ClientesService {
 	
 	@Transactional
 	public void salvar(Cliente cliente) {
+		if (cliente.getCpfOuCnpj() != null && cliente.getTipoPessoa() != null) {
+	        String semFormatacao = TipoPessoa.removerFormatacao(cliente.getCpfOuCnpj());
+	        cliente.setCpfOuCnpj(semFormatacao);
+	    }
 		repository.save(cliente);
 	}
 
