@@ -79,7 +79,6 @@ public class ClientesControler {
     @GetMapping("/{codigo}")
     public ModelAndView editar(@PathVariable Long codigo) {
         Cliente cliente = service.buscarPorId(codigo);
-        System.out.println("CPF/CNPJ carregado do banco: " + cliente.getCpfOuCnpj()); 
         ModelAndView mv = new ModelAndView("CadastroCliente");
         mv.addObject("cliente", cliente);
         mv.addObject("tiposPessoa", TipoPessoa.values());
