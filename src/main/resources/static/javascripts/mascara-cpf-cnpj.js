@@ -29,7 +29,6 @@ Adm.MascaraCpfCnpj = (function () {
 		}
 
 		if (this.inputCpfCnpj.length && mascara) {
-			this.inputCpfCnpj.val('');
 			this.inputCpfCnpj.mask(mascara);
 			this.inputCpfCnpj.removeAttr('disabled');
 		}

@@ -9,6 +9,13 @@
 <body class="bg-light">
 
     <div class="container py-5">
+		<div class="text-end mb-3">
+		    <form th:action="@{/logout}" method="post">
+		        <button type="submit" class="btn btn-outline-danger">
+		            <i class="bi bi-box-arrow-right"></i> Sair
+		        </button>
+		    </form>
+		</div>
         <h1 class="text-center mb-5">Painel de Controle</h1>
 
         <div class="accordion" id="dashboardAccordion">
@@ -16,7 +23,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingCliente">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCliente" aria-expanded="false" aria-controls="collapseCliente">
-                        <i class="bi bi-person-fill me-2"></i> Cliente
+                        <i class="bi bi-person-fill me-2"></i> Clientes
                     </button>
                 </h2>
                 <div id="collapseCliente" class="accordion-collapse collapse" aria-labelledby="headingCliente" data-bs-parent="#dashboardAccordion">
@@ -34,7 +41,7 @@
             <div class="accordion-item mt-3">
                 <h2 class="accordion-header" id="headingProduto">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduto" aria-expanded="false" aria-controls="collapseProduto">
-                        <i class="bi bi-box-seam me-2"></i> Produto
+                        <i class="bi bi-box-seam me-2"></i> Produtos
                     </button>
                 </h2>
                 <div id="collapseProduto" class="accordion-collapse collapse" aria-labelledby="headingProduto" data-bs-parent="#dashboardAccordion">
@@ -52,7 +59,7 @@
             <div class="accordion-item mt-3">
                 <h2 class="accordion-header" id="headingVenda">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVenda" aria-expanded="false" aria-controls="collapseVenda">
-                        <i class="bi bi bi-cart-plus me-2"></i> Venda
+                        <i class="bi bi bi-cart-plus me-2"></i> Vendas
                     </button>
                 </h2>
                 <div id="collapseVenda" class="accordion-collapse collapse" aria-labelledby="headingVenda" data-bs-parent="#dashboardAccordion">
@@ -70,7 +77,7 @@
             <div class="accordion-item mt-3">
                 <h2 class="accordion-header" id="headingUsuario">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsuario" aria-expanded="false" aria-controls="collapseUsuario">
-                        <i class="bi bi-people me-2"></i> Usuario
+                        <i class="bi bi-people me-2"></i> Usuarios
                     </button>
                 </h2>
                 <div id="collapseUsuario" class="accordion-collapse collapse" aria-labelledby="headingUsuario" data-bs-parent="#dashboardAccordion">

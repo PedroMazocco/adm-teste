@@ -20,10 +20,10 @@
                     
                     <div class="row">
 				<div class="form-group  col-sm-4  bw-required" adm:classforerror="tipoPessoa">
-					<label class="control-label">Tipo pessoa</label> 
+					<label class="form-label d-block">Tipo pessoa</label> 
 					<div>
 						<th:block th:each="tipoPessoa : ${tiposPessoa}">
-							<div class="radio  radio-inline">
+							 <div class="form-check form-check-inline ms-1">
 								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
 									th:field="*{tipoPessoa}" th:value="${tipoPessoa}" 
 									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"/> 
@@ -36,6 +36,7 @@
 				<div class="form-group  col-sm-8  bw-required" adm:classforerror="cpfOuCnpj">
 					<label for="cpfOuCnpj" class="control-label">CPF/CNPJ</label>
 					<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled/>
+					<input type="hidden" th:field="*{cpfOuCnpj}" />
 				</div>
 			</div>
                     
