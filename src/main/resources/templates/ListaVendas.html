@@ -17,7 +17,7 @@
                 <th>Código</th>
                 <th>Cliente</th>
                 <th>Produto</th>
-                <th>Ações</th>
+                <th  class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                 <td th:text="${venda.codigo}"></td>
                 <td th:text="${venda.cliente.nome}"></td>
                 <td th:text="${venda.produto.nome}"></td>
-                <td class="d-flex gap-1">
+                <td class="d-flex justify-content-center gap-1 align-items-center text-center">
 				
 				    <a th:href="@{/venda/{codigo}(codigo=${venda.codigo})}"
 				       class="btn btn-sm btn-outline-primary"
@@ -33,7 +33,7 @@
 				        <i class="bi bi-pencil"></i>
 				    </a>
 				
-				    <form th:action="@{/venda/{codigo}/excluir(codigo=${venda.codigo})}" method="post"
+				    <form th:action="@{/venda/excluir/{codigo}(codigo=${venda.codigo})}" method="post"
 				          onsubmit="return confirm('Deseja realmente excluir esta venda?')">
 				        <button type="submit"
 				                class="btn btn-sm btn-outline-danger"

@@ -44,4 +44,14 @@ public class VendaService {
 		return repository.findAll();
 	}
 
+	public void deleteById(Long codigo) {
+		repository.deleteById(codigo);
+		
+	}
+
+	public Venda buscarPorId(Long codigo) {
+		return repository.findById(codigo)
+				.orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado: " + codigo));
+	}
+
 }

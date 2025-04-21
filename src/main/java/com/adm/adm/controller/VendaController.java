@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,6 +47,23 @@ public class VendaController {
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("ListaVendas");
 		mv.addObject("vendas",service.listarVendas());
+		return mv;
+	}
+	
+	@PostMapping("/excluir/{codigo}")
+	public String excluir(@PathVariable Long codigo) {
+		service.deleteById(codigo);
+		return "redirect:/venda";
+		
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable Long codigo) {
+		Venda venda = service.buscarPorId(codigo);
+		ModelAndView mv = new ModelAndView("CadastroVenda");
+		mv.addObject("venda", venda);
+	    mv.addObject("clientes", service.listarClientes());
+	    mv.addObject("produtos", service.listarProdutos());
 		return mv;
 	}
 }
