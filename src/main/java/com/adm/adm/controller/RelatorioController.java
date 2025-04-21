@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adm.adm.model.Cliente;
@@ -30,6 +33,9 @@ public class RelatorioController {
     
     @Autowired
     private ProdutoService produtoService;
+    
+    @Autowired
+    private DataSource dataSource;
 
     @GetMapping("/clientes")
     public void relatorioClientes(HttpServletResponse response) {
@@ -76,4 +82,25 @@ public class RelatorioController {
             throw new RuntimeException("Erro ao gerar relatório: " + e.getMessage());
         }
     }
+    
+    @GetMapping("/venda/{codigo}")
+    public void imprimirVenda(@PathVariable Long codigo, HttpServletResponse response) {
+        try {
+            InputStream jasperStream = getClass().getResourceAsStream("/relatorios/relatorio-venda.jasper");
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("codigoVenda", codigo);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperStream, params, dataSource.getConnection());
+
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; filename=venda-" + codigo + ".pdf");
+
+            JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao gerar relatório da venda: " + e.getMessage());
+        }
+    }
+
 }
