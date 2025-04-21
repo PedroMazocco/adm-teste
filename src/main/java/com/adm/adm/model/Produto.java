@@ -1,5 +1,7 @@
 package com.adm.adm.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Produto {
 	private String nome;
 	
 	@NotNull(message="O campo valor é obrigatório!")
+	@NumberFormat(pattern = "#,##0.00")
 	private Float valor;
 
 	public Long getCodigo() {
